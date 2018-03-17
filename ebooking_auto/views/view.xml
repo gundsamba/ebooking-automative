@@ -1,0 +1,13 @@
+<odoo>
+  <data>
+    <menuitem name="Захиалга бүртгэл" id="ebooking_auto.menu_root"/>
+
+    <menuitem name="Цаг авалт" id="ebooking_auto.board" parent="ebooking_auto.menu_root" sequence="1" action="ebooking_auto.action_window_board"/>
+
+    <menuitem name="Үйлчлүүлэгчийн бүртгэл" id="ebooking_auto.menu_customer" parent="ebooking_auto.menu_root" sequence="1" action="ebooking_auto.action_window_customer_vehicle"/>
+
+    <menuitem name="Автомашины марк" id="ebooking_auto.vehicle_model" parent="ebooking_auto.menu_root"
+      sequence="1"
+      action="ebooking_auto.action_window_vehicle_model"/>
+  </data>
+</odoo>
