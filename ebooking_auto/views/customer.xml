@@ -1,0 +1,82 @@
+<odoo>
+  <data>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_customer_vehicle">
+      <field name="name">ebooking_auto.fleet.vehicle.form</field>
+      <field name="res_model">fleet.vehicle</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <!-- <field name="view_id" ref="ebooking_auto.view_tree_customer_vehicle"/> -->
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_customer_vehicle">
+      <field name="name">ebooking_auto.fleet.vehicle.form</field>
+      <field name="model">fleet.vehicle</field>
+      <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="replace">
+            <form string="Тээврийн хэрэгсэлийн бүртгэл">
+                <header>
+                    <field name="state_id" widget="statusbar" clickable="True"/>
+                </header>
+                <sheet>
+                    <field name="image_medium" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="model_id" class="oe_edit_only" string="Автомашины загвар"/>
+                        <h1>
+                            <field name="model_id" placeholder="ж. Land Cruiser 200 GX.R"/>
+                        </h1>
+                        <label for="license_plate" class="oe_edit_only"/>
+                        <h2>
+                            <field name="license_plate" class="oe_inline" placeholder="ж. AAA 999"/>
+                        </h2>
+                    </div>
+                    <group col="2" string="Үндсэн мэдээлэл">
+                        <group>
+                            <field name="vin_sn" string="Арлын дугаар"/>
+                            <field name="model_year" string="Үйлдвэрлэсэн он"/>
+                        </group>
+                        <group>
+                            <label for="odometer" string="Гүйлт"/>
+                            <div class="o_row">
+                                <field name="odometer"/>
+                                <field name="odometer_unit"/>
+                            </div>
+                            <field name="transmission" string="Шатхууны төрөл"/>
+                            <field name="fuel_type" string="Хурдны хайрцаг"/>
+                        </group>
+                    </group>
+                    <group string="Үйлчлүүлэгчийн мэдээлэл">
+                        <group>
+                            <field name="customer_name" string="Эзэмшигчийн нэр"/>
+                            <field name="customer_company_type" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+                            <field name="customer_contact_address" string="Хаяг"/>
+                        </group>
+                        <group>
+                            <field name="customer_phone" string="Утас"/>
+                            <field name="customer_mobile" string="Гар утас"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_tree_customer_vehicle">
+      <field name="name">ebooking_auto.fleet.vehicle.view</field>
+      <field name="model">fleet.vehicle</field>
+      <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="replace">
+            <tree string="Vehicles">
+                <field name="vin_sn" string="Аралын дугаар"/>
+                <field name="license_plate" string="Улсын дугаар"/>
+                <field name="customer_name" string="Эзэмшигчийн нэр"/>
+                <field name="customer_company_type" string="Эзэмшигч"/>
+                <field name="model_id" string="Автомашины загвар"/>
+                <field name="model_year" string="Үйлдвэрлэсэн он"/>
+                <field name="odometer" string="Гүйлт"/>
+            </tree>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

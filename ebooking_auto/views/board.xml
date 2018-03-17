@@ -1,0 +1,10 @@
+<odoo>
+  <data>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_board">
+      <field name="name">Цаг авалт</field>
+      <field name="res_model">fleet.vehicle.model.brand</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

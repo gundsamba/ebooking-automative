@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <!-- Adding custom category -->
+    <record model="ir.module.category" id="auto_roles">
+      <field name="name">EBOOKING AUTOMOTIVE ROLES</field>
+      <field name="description">eBooking Automative Roles</field>
+    </record>
+ 
+    <!-- Add TGL group with manager, se and proper -->
+    <record model="res.groups" id="admin_user">
+      <field name="name">Admin</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="booking_user">
+      <field name="name">Цаг авалт</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="booking_appointment">
+      <field name="name">Цаг авалт - Захиалга бүртгэх, үйлчлүүлэгчийн мэдээлэл</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+      <field name="implied_ids" eval="[(4, ref('ebooking_auto.booking_user'))]"/>
+    </record>
+    <record model="res.groups" id="booking_diagnostic">
+      <field name="name">Цаг авалт - Оношлогоо оруулах</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+      <field name="implied_ids" eval="[(4, ref('ebooking_auto.booking_user'))]"/>
+    </record>
+    <record model="res.groups" id="booking_repair">
+      <field name="name">Цаг авалт - Засвар оруулах</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+      <field name="implied_ids" eval="[(4, ref('ebooking_auto.booking_user'))]"/>
+    </record>
+    <record model="res.groups" id="booking_parts">
+      <field name="name">Цаг авалт - Солигдох сэлбэг</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+      <field name="implied_ids" eval="[(4, ref('ebooking_auto.booking_user'))]"/>
+    </record>
+    <record model="res.groups" id="booking_payment">
+      <field name="name">Цаг авалт - Төлбөрийн мэдээлэл</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+      <field name="implied_ids" eval="[(4, ref('ebooking_auto.booking_user'))]"/>
+    </record>
+    <record model="res.groups" id="staff_user">
+      <field name="name">Ажилтаны бүртгэлийн сан</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="repair_user">
+      <field name="name">Засвар үйлчилгээний сан</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="parts_user">
+      <field name="name">Сэлбэгийн мэдээллийн сан</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="setup_user">
+      <field name="name">Тохиргоо</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="report_user">
+      <field name="name">Тайлан, лавлагаа</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+    <record model="res.groups" id="vehicle_user">
+      <field name="name">Автомашины марк</field>
+      <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+  </data>
+</odoo>
