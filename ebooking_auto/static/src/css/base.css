@@ -1,0 +1,28 @@
+div.checkboxes-inline > div{
+    display: inline;
+}
+
+.fc-event {
+    border: none !important;
+    border-right: none;
+    border-left: 6px solid rgba(0,0,0,.15) !important;
+    padding-left: 2px;
+}
+.o_calendar_color_order{
+    background-color: #4c4f53 !important;
+}
+.o_calendar_color_wait{
+    background-color: #ac5287 !important;
+}
+.o_calendar_color_serve{
+    background-color: #c79121 !important;
+}
+.o_calendar_color_complete{
+    background-color: #57889c !important;
+}
+.o_calendar_color_paid{
+    background-color: #71843f !important;
+}
+.o_calendar_color_cancel{
+    background-color: #a90329 !important;
+}

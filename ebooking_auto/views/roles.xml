@@ -6,7 +6,7 @@
       <field name="name">EBOOKING AUTOMOTIVE ROLES</field>
       <field name="description">eBooking Automative Roles</field>
     </record>
- 
+
     <!-- Add TGL group with manager, se and proper -->
     <record model="res.groups" id="admin_user">
       <field name="name">Admin</field>
@@ -64,6 +64,172 @@
     <record model="res.groups" id="vehicle_user">
       <field name="name">Автомашины марк</field>
       <field name="category_id" ref="ebooking_auto.auto_roles"/>
+    </record>
+
+    <!--  -->
+    <record model="product.category" id="product_category_repair">
+      <field name="name">Засвар үйлчилгээ</field>
+      <field name="parent_id" ref="product.product_category_all"/>
+    </record>
+    <record model="product.category" id="product_category_part">
+      <field name="name">Сэлбэг</field>
+      <field name="parent_id" ref="product.product_category_all"/>
+    </record>
+    <record model="product.category" id="product_category_diagnostic">
+      <field name="name">Оношлогоо</field>
+      <field name="parent_id" ref="product.product_category_all"/>
+    </record>
+
+    <!-- RESOURCE LIST -->
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_01">
+      <field name="num">1</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_02">
+      <field name="num">2</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_03">
+      <field name="num">3</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_04">
+      <field name="num">4</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_05">
+      <field name="num">5</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_06">
+      <field name="num">6</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_07">
+      <field name="num">7</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_08">
+      <field name="num">8</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_09">
+      <field name="num">9</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_10">
+      <field name="num">10</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_11">
+      <field name="num">11</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_12">
+      <field name="num">12</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_13">
+      <field name="num">13</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_14">
+      <field name="num">14</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_15">
+      <field name="num">15</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_16">
+      <field name="num">16</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_17">
+      <field name="num">17</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_18">
+      <field name="num">18</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_19">
+      <field name="num">19</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_20">
+      <field name="num">20</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_21">
+      <field name="num">21</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_22">
+      <field name="num">22</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_23">
+      <field name="num">23</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_24">
+      <field name="num">24</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_25">
+      <field name="num">25</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_26">
+      <field name="num">26</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_27">
+      <field name="num">27</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_28">
+      <field name="num">28</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_29">
+      <field name="num">29</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_30">
+      <field name="num">30</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_31">
+      <field name="num">31</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_32">
+      <field name="num">32</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_33">
+      <field name="num">33</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_34">
+      <field name="num">34</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_35">
+      <field name="num">35</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_36">
+      <field name="num">36</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_37">
+      <field name="num">37</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_38">
+      <field name="num">38</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_39">
+      <field name="num">39</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_40">
+      <field name="num">40</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_41">
+      <field name="num">41</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_42">
+      <field name="num">42</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_43">
+      <field name="num">43</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_44">
+      <field name="num">44</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_45">
+      <field name="num">45</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_46">
+      <field name="num">46</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_47">
+      <field name="num">47</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_48">
+      <field name="num">48</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_49">
+      <field name="num">49</field>
+    </record>
+    <record model="ebooking_auto.resource" id="ebooking_auto.resource_50">
+      <field name="num">50</field>
     </record>
   </data>
 </odoo>

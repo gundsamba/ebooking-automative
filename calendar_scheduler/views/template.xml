@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+    <template id="fullcalendar_scheduler_js" name="fullcalendar scheduler assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+          <script type="text/javascript" src="/calendar_scheduler/static/src/js/fullcalendar_scheduler_controller.js"></script>
+          <script type="text/javascript" src="/calendar_scheduler/static/src/js/fullcalendar_scheduler_model.js"></script>
+          <!-- <script type="text/javascript" src="/calendar_scheduler/static/src/js/fullcalendar_scheduler_renderer.js"></script> -->
+          <script type="text/javascript" src="/calendar_scheduler/static/src/js/fullcalendar_scheduler_view.js"></script>
+
+          <script type="text/javascript" src="/calendar_scheduler/static/src/js/ebooking_auto_scheduler_controller.js"></script>
+        </xpath>
+    </template>
+    <template id="fullcalendar_scheduler_js2" name="fullcalendar scheduler assets2" inherit_id="web.assets_backend">
+        <xpath expr="//script[90]" position="replace">
+          <script type="text/javascript" src="/calendar_scheduler/static/src/js/calendar_renderer.js"></script>
+        </xpath>
+    </template>
+    <!-- <template id="moment_js_override" name="moment assets override" inherit_id="web.assets_common">
+        <xpath expr="//script[4]" position="replace">
+          <script type="text/javascript" src="/calendar_scheduler/static/lib/moment/moment.min.js"></script>
+        </xpath>
+    </template> -->
+    <template id="fullcalendar_scheduler_css" name="fullcalendar scheduler assets css" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/calendar_scheduler/static/src/css/fullcalendar_scheduler.css"/>
+      </xpath>
+    </template>
+  </data>
+</odoo>

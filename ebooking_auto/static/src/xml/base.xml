@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="ebooking_auto.base_template" xml:space="preserve">
+    <t t-name="ebooking_auto.FieldStatus.content">
+        <t t-if="selection_folded.length">
+            <ul class="dropdown-menu o-status-more" role="menu">
+                <li t-foreach="selection_folded" t-as="i">
+                    <t t-call="ebooking_auto.FieldStatus.content.button"/>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-sm o_arrow_button btn-default dropdown-toggle" data-toggle="dropdown">More <span class="caret"/></button>
+        </t>
+        <t t-foreach="selection_unfolded.reverse()" t-as="i">
+            <t t-call="ebooking_auto.FieldStatus.content.button"/>
+        </t>
+    </t>
+    <t t-name="ebooking_auto.FieldStatus.content.button">
+        <t t-set="disabled" t-value="!clickable || i.selected"/>
+        <button type="button" t-att-data-value="i.id" t-att-disabled="disabled ? 'disabled' : undefined"
+            t-attf-class="btn btn-sm o_arrow_button btn-#{i.selected ? 'primary' : 'default'}#{disabled ? ' disabled ' : ' '}"
+            t-attf-style="border-bottom: 2px solid #{i.under_color}">
+            <t t-esc="i.display_name"/>
+        </button>
+    </t>
+    <!-- Calendar timeline content box -->
+    <t t-name="calendar-box-timeline">
+        <t t-set="color" t-value="widget.getColor(event.color_index)"/>
+        <div t-attf-class="#{'o_calendar_color_'+color}">
+            <div class="o_fields">
+                <t t-foreach="widget.displayFields" t-as="name">
+                    <t t-if="name != 'resource_id'">
+                        <div t-attf-class="o_field_#{name} o_field_type_#{fields[name].type}">
+                            <t t-esc="format(record, name)"/>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

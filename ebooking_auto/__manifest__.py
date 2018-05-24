@@ -20,27 +20,25 @@
     'version': '0.1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['fleet'],
+    'depends': ['calendar_scheduler','fleet','project','hr','mrp_repair'],
 
     # always loaded
     'data': [
+        'views/templates.xml',
         'views/roles.xml',
         'views/board.xml',
         'views/vehicle.xml',
         'views/customer.xml',
+        'views/employee.xml',
+        'views/product.xml',
+        'views/settings.xml',
         'views/view.xml'
-        # 'security/ir.model.access.csv',
-        # 'views/topic.xml',
-        # 'views/topic_mail.xml',
-        # 'views/personnel.xml',
-        # 'views/experience.xml',
-        # 'views/assign.xml',
-        # 'views/res_company_custom.xml',
-        # 'views/dashboard.xml',
-        # 'views/views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
+    ],
+    'qweb': [
+        "static/src/xml/base.xml",
     ],
     'application': True,
 }

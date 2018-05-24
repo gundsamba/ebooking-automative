@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="assets_backend" name="EbookingBaseStyle" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/ebooking_auto/static/src/css/base.css"/>
+        <script type="text/javascript" src="/ebooking_auto/static/src/js/base.js"></script>
+      </xpath>
+    </template>
+  </data>
+</odoo>

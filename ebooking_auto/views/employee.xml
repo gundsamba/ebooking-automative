@@ -1,0 +1,386 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="ebooking_auto.view_tree_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.tree</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <tree string="Ажилтаны бүртгэл">
+            <field name="name" string="Нэр"/>
+            <field name="work_phone" string="Ажлын утас"/>
+            <field name="work_email" string="И-мэйл хаяг"/>
+            <field name="department_id" string="Алба нэгж"/>
+            <field name="job_id" string="Албан тушаал"/>
+            <field name="parent_id" string="Нэгжийн дарга"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.form</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <form string="Ажилтаны бүртгэл">
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                    </button>
+                </div>
+                <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}"/>
+                <div class="oe_title">
+                    <label for="first_name" class="oe_edit_only" string="Өөрийн нэр"/>
+                    <h3>
+                        <field name="first_name" placeholder="Өөрийн нэр" required="True"/>
+                    </h3>
+                    <label for="last_name" class="oe_edit_only" string="Эцэг/эхийн нэр"/>
+                    <h3>
+                        <field name="last_name" placeholder="Эцэг/эхийн нэр" required="True"/>
+                    </h3>
+                    <field name="name" placeholder="Employee's Name" required="True" invisible="True"/>
+                </div>
+                <notebook>
+                    <page name="public" string="Ажлын мэдээлэл">
+                        <group>
+                            <group>
+                                <field name="work_email" widget="email" string="И-мэйл хаяг"/>
+                                <field name="mobile_phone" string="Ажлын утас"/>
+                                <field name="work_phone" string="Гар утас"/>
+                            </group>
+                            <group>
+                                <field name="department_id" string="Алба нэгж"/>
+                                <field name="job_id" string="Албан тушаал"/>
+                                <field name="parent_id" string="Нэгжийн дарга"/>
+                            </group>
+                        </group>
+                        <field name="notes" placeholder="Тайлбар мэдээлэл ..." colspan="4"/>
+                    </page>
+                    <page name="personal_information" string="Хувийн мэдээлэл">
+                        <group>
+                            <group>
+                                <field name="middle_name" string="Овог"/>
+                                <field name="birthday" string="Төрсөн огноо"/>
+                                <field name="gender" string="Хүйс"/>
+                                <field name="marital" string="Гэр бүлийн байдал"/>
+                            </group>
+                            <group>
+                                <field name="country_id" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" string="Иргэншил"/>
+                                <field name="identification_id" string="Иргэний үнэмлэх"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="hr_settings" string="Системийн хэрэглэгч">
+                        <group>
+                            <group string="Төлөв" name="active_group">
+                                <field name="user_id" string="Холбоотой хэрэглэгч"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_kanban_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.kanban</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <kanban class="o_hr_employee_kanban">
+            <field name="id"/>
+            <field name="message_is_follower"/>
+            <field name="message_follower_ids"/>
+            <field name="message_ids"/>
+            <field name="message_needaction_counter"/>
+            <templates>
+                <t t-name="kanban-box">
+                <div class="oe_kanban_global_click">
+                    <div class="o_kanban_image">
+                        <img t-att-src="kanban_image('hr.employee', 'image_medium', record.id.raw_value)"/>
+                        <div class="o_employee_summary_icons">
+                            <t t-if="record.message_needaction_counter.raw_value">
+                                <span class="oe_kanban_mail_new" title="Unread Messages"><i class="fa fa-comments"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                            </t>
+                            <span title="Messages"><i class="fa fa-comments"/><t t-esc="record.message_ids.raw_value.length"/></span>
+                            <span title="Followers"><i class="fa fa-users"/><t t-esc="record.message_follower_ids.raw_value.length"/></span>
+                        </div>
+                    </div>
+                    <div class="oe_kanban_details">
+                        <div class="o_kanban_record_top">
+                            <div class="o_kanban_record_headings">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <span t-if="record.job_id.raw_value" class="o_kanban_record_subtitle"><field name="job_id"/></span>
+                            </div>
+                        </div>
+                        <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        <ul>
+                            <li id="last_login"/>
+                            <li t-if="record.work_location.raw_value"><field name="work_location"/></li>
+                            <li t-if="record.work_email.raw_value"><i class="fa fa-envelope"/> <field name="work_email"/></li>
+                            <li t-if="record.work_phone.raw_value"><i class="fa fa-phone"/> <field name="work_phone"/></li>
+                            <li t-if="record.mobile_phone.raw_value"><i class="fa fa-mobile"/> <field name="mobile_phone"/></li>
+                        </ul>
+                        <div class="o_kanban_button">
+                            <button t-if="record.message_is_follower.raw_value" name="action_unfollow" type="object" class="o_follow_btn o_following btn btn-sm btn-default">
+                                <span class="o_unfollow">Дагахгүй</span>
+                                <span class="o_following">Дагасан</span>
+                            </button>
+                            <button t-if="!record.message_is_follower.raw_value" name="action_follow" type="object" class="o_follow_btn o_follow btn btn-sm btn-primary">Дагах</button>
+                        </div>
+                    </div>
+                </div>
+                </t>
+            </templates>
+        </kanban>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_employee_list">
+      <field name="name">Ажилтаны бүртгэл</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_id" ref="ebooking_auto.view_tree_hr_employee"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="ebooking_auto.action_window_employee_list_tree">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ebooking_auto.view_tree_hr_employee"/>
+        <field name="act_window_id" ref="ebooking_auto.action_window_employee_list"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="ebooking_auto.action_window_employee_list_form">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="ebooking_auto.view_form_hr_employee"/>
+        <field name="act_window_id" ref="ebooking_auto.action_window_employee_list"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="ebooking_auto.action_window_employee_list_kanban">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="ebooking_auto.view_kanban_hr_employee"/>
+        <field name="act_window_id" ref="ebooking_auto.action_window_employee_list"/>
+    </record>
+    <!-- <record model="ir.ui.view" id="ebooking_auto.view_tree_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.tree</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="replace">
+            <tree string="Ажилтаны бүртгэл">
+                <field name="name" string="Нэр"/>
+                <field name="work_phone" string="Ажлын утас"/>
+                <field name="work_email" string="И-мэйл хаяг"/>
+                <field name="department_id" string="Алба нэгж"/>
+                <field name="job_id" string="Албан тушаал"/>
+                <field name="parent_id" string="Нэгжийн дарга"/>
+            </tree>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.form</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="replace">
+            <form string="Ажилтаны бүртгэл">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}"/>
+                    <div class="oe_title">
+                        <label for="first_name" class="oe_edit_only" string="Өөрийн нэр"/>
+                        <h3>
+                            <field name="first_name" placeholder="Өөрийн нэр" required="True"/>
+                        </h3>
+                        <label for="last_name" class="oe_edit_only" string="Эцэг/эхийн нэр"/>
+                        <h3>
+                            <field name="last_name" placeholder="Эцэг/эхийн нэр" required="True"/>
+                        </h3>
+                        <field name="name" placeholder="Employee's Name" required="True" invisible="True"/>
+                    </div>
+                    <notebook>
+                        <page name="public" string="Ажлын мэдээлэл">
+                            <group>
+                                <group>
+                                    <field name="work_email" widget="email" string="И-мэйл хаяг"/>
+                                    <field name="mobile_phone" string="Ажлын утас"/>
+                                    <field name="work_phone" string="Гар утас"/>
+                                </group>
+                                <group>
+                                    <field name="department_id" string="Алба нэгж"/>
+                                    <field name="job_id" string="Албан тушаал"/>
+                                    <field name="parent_id" string="Нэгжийн дарга"/>
+                                </group>
+                            </group>
+                            <field name="notes" placeholder="Тайлбар мэдээлэл ..." colspan="4"/>
+                        </page>
+                        <page name="personal_information" string="Хувийн мэдээлэл">
+                            <group>
+                                <group>
+                                    <field name="middle_name" string="Овог"/>
+                                    <field name="birthday" string="Төрсөн огноо"/>
+                                    <field name="gender" string="Хүйс"/>
+                                    <field name="marital" string="Гэр бүлийн байдал"/>
+                                </group>
+                                <group>
+                                    <field name="country_id" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" string="Иргэншил"/>
+                                    <field name="identification_id" string="Иргэний үнэмлэх"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="hr_settings" string="Системийн хэрэглэгч">
+                            <group>
+                                <group string="Төлөв" name="active_group">
+                                    <field name="user_id" string="Холбоотой хэрэглэгч"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_kanban_hr_employee">
+      <field name="name">ebooking_auto.hr.employee.kanban</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+      <field name="arch" type="xml">
+        <xpath expr="//kanban" position="replace">
+            <kanban class="o_hr_employee_kanban">
+                <field name="id"/>
+                <field name="message_is_follower"/>
+                <field name="message_follower_ids"/>
+                <field name="message_ids"/>
+                <field name="message_needaction_counter"/>
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_image">
+                            <img t-att-src="kanban_image('hr.employee', 'image_medium', record.id.raw_value)"/>
+                            <div class="o_employee_summary_icons">
+                                <t t-if="record.message_needaction_counter.raw_value">
+                                    <span class="oe_kanban_mail_new" title="Unread Messages"><i class="fa fa-comments"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                </t>
+                                <span title="Messages"><i class="fa fa-comments"/><t t-esc="record.message_ids.raw_value.length"/></span>
+                                <span title="Followers"><i class="fa fa-users"/><t t-esc="record.message_follower_ids.raw_value.length"/></span>
+                            </div>
+                        </div>
+                        <div class="oe_kanban_details">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <span t-if="record.job_id.raw_value" class="o_kanban_record_subtitle"><field name="job_id"/></span>
+                                </div>
+                            </div>
+                            <field name="category_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <ul>
+                                <li id="last_login"/>
+                                <li t-if="record.work_location.raw_value"><field name="work_location"/></li>
+                                <li t-if="record.work_email.raw_value"><i class="fa fa-envelope"/> <field name="work_email"/></li>
+                                <li t-if="record.work_phone.raw_value"><i class="fa fa-phone"/> <field name="work_phone"/></li>
+                                <li t-if="record.mobile_phone.raw_value"><i class="fa fa-mobile"/> <field name="mobile_phone"/></li>
+                            </ul>
+                            <div class="o_kanban_button">
+                                <button t-if="record.message_is_follower.raw_value" name="action_unfollow" type="object" class="o_follow_btn o_following btn btn-sm btn-default">
+                                    <span class="o_unfollow">Дагахгүй</span>
+                                    <span class="o_following">Дагасан</span>
+                                </button>
+                                <button t-if="!record.message_is_follower.raw_value" name="action_follow" type="object" class="o_follow_btn o_follow btn btn-sm btn-primary">Дагах</button>
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                </templates>
+            </kanban>
+        </xpath>
+      </field>
+    </record> -->
+
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_employee_department">
+      <field name="name">Алба нэгж</field>
+      <field name="res_model">hr.department</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_tree_hr_department">
+      <field name="name">ebooking_auto.hr.department.tree</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref="hr.view_department_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="replace">
+            <tree string="Алба нэгж">
+                <field name="name" string="Нэр"/>
+                <field name="manager_id" string="Нэгжийн дарга"/>
+                <field name="parent_id" string="Толгой нэгж"/>
+            </tree>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_hr_department">
+      <field name="name">ebooking_auto.hr.department.form</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref="hr.view_department_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="replace">
+            <form string="Алба нэгж">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
+                    <group col="4">
+                        <field name="name" string="Нэр"/>
+                        <field name="manager_id" string="Нэгжийн дарга"/>
+                        <field name="parent_id" string="Толгой нэгж"/>
+                    </group>
+                </sheet>
+            </form>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_employee_job">
+      <field name="name">Албан тушаал</field>
+      <field name="res_model">hr.job</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_tree_hr_job">
+      <field name="name">ebooking_auto.hr.department.tree</field>
+      <field name="model">hr.job</field>
+      <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree" position="replace">
+            <tree string="Албан тушаал">
+                <field name="name" string="Нэр"/>
+                <field name="no_of_employee" string="Ажилтаны тоо"/>
+            </tree>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_hr_job">
+      <field name="name">ebooking_auto.hr.department.form</field>
+      <field name="model">hr.job</field>
+      <field name="inherit_id" ref="hr.view_hr_job_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form" position="replace">
+            <form string="Албан тушаал">
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Албан тушаал"/>
+                        <h1><field name="name" placeholder="ж. Борлуулалтын менежер"/></h1>
+                    </div>
+                </sheet>
+            </form>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

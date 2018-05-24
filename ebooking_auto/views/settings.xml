@@ -1,0 +1,258 @@
+<odoo>
+  <data>
+    <!-- BASE SETTINGS -->
+    <record id="ebooking_auto.view_form_base_settings" model="ir.ui.view">
+      <field name="name">res.config.settings.base_settings_form</field>
+      <field name="model">res.config.settings</field>
+      <field name="priority" eval="10"/>
+      <field name="inherit_id" ref="base.res_config_settings_view_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//div[hasclass('settings')]" position="inside">
+          <div class="app_settings_block" data-string="Ebooking_auto" string="Цаг авалт" data-key="ebooking_auto">
+            <h2>Өргөгч</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_left_pane"/>
+                <div class="o_setting_right_pane">
+                  <div class="row mt16">
+                    <label string="Өргөгчийн тоо" class="col-md-4 o_light_label"/>
+                    <field name="resource_capacity" widget="selection"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2>Цаг авалтын календар</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_left_pane"/>
+                <div class="o_setting_right_pane">
+                  <div class="row mt16">
+                    <label string="Эхлэх цаг" class="col-md-4 o_light_label"/>
+                    <field name="timeline_starttime" widget="selection"/>
+                  </div>
+                  <div class="row">
+                    <label string="Дуусах цаг" class="col-md-4 o_light_label"/>
+                    <field name="timeline_endtime" widget="selection"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_left_pane"/>
+                <div class="o_setting_right_pane">
+                  <div class="row mt16">
+                    <label string="Цайны эхлэх цаг" class="col-md-4 o_light_label"/>
+                    <field name="timeline_lunchstarttime" widget="selection"/>
+                  </div>
+                  <div class="row">
+                    <label string="Цайны дуусах цаг" class="col-md-4 o_light_label"/>
+                    <field name="timeline_lunchendtime" widget="selection"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_left_pane"/>
+                <div class="o_setting_right_pane">
+                  <div class="row mt16">
+                    <label string="Цагийн интервал" class="col-md-4 o_light_label"/>
+                    <field name="timeline_interval" widget="selection"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_base_settings">
+      <field name="name">res.config.settings.action</field>
+      <field name="res_model">res.config.settings</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="ebooking_auto.view_form_base_settings"/>
+      <field name="target">inline</field>
+      <field name="context">{'module' : 'ebooking_auto'}</field>
+    </record>
+
+    <!-- RESOURCE CAPACITY -->
+    <record model="ir.ui.view" id="ebooking_auto.view_list_resource_capacity">
+      <field name="name">ir.config_parameter.resource_capacity_tree</field>
+      <field name="model">ir.config_parameter</field>
+      <field name="arch" type="xml">
+        <tree string="System Parameters" create="false" editable="bottom">
+          <field name="value" string="Өргөгчийн тоо"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_resource_capacity">
+      <field name="name">ir.config_parameter.resource_capacity_form</field>
+      <field name="model">ir.config_parameter</field>
+      <field name="arch" type="xml">
+        <form string="System Parameters" create="false">
+          <sheet>
+            <group>
+              <field name="value" string="Өргөгчийн тоо"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_resource_capacity">
+      <field name="name">ebooking_auto.resource.capacity.action</field>
+      <field name="res_model">ir.config_parameter</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="ebooking_auto.view_list_resource_capacity"/>
+      <field name="context">{"is_resource_capacity":True}</field>
+    </record>
+    <record id="ebooking_auto.action_window_resource_capacity_tree" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="ebooking_auto.view_list_resource_capacity"/>
+      <field name="act_window_id" ref="ebooking_auto.action_window_resource_capacity"/>
+    </record>
+    <record id="ebooking_auto.action_window_resource_capacity_form" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="ebooking_auto.view_form_resource_capacity"/>
+      <field name="act_window_id" ref="ebooking_auto.action_window_resource_capacity"/>
+    </record>
+    <!-- RESOURCE -->
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_resource">
+      <field name="name">ebooking_auto.resource.action</field>
+      <field name="res_model">ebooking_auto.resource</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_list_resource">
+      <field name="name">ebooking_auto.resource.list</field>
+      <field name="model">ebooking_auto.resource</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+          <field name="num"/>
+          <field name="desc"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_resource">
+      <field name="name">ebooking_auto.resource.form</field>
+      <field name="model">ebooking_auto.resource</field>
+      <field name="arch" type="xml">
+        <form create="false">
+          <sheet>
+            <group>
+              <field name="num" readonly="1"/>
+              <field name="desc"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- REQUEST TYPE -->
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_request_type">
+      <field name="name">ebooking_auto.request.type.action</field>
+      <field name="res_model">ebooking_auto.request_type</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <!-- DIAGNOSTIC TYPE -->
+    <record model="ir.ui.view" id="ebooking_auto.view_tree_product_diagnostic_type">
+      <field name="name">ebooking_auto.product.diagnostic_type.tree</field>
+      <field name="model">product.template</field>
+      <field name="arch" type="xml">
+        <tree string="Оношлогооны төрөл">
+          <field name="name" string="Нэр"/>
+          <field name="list_price" string="Үнэ"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_form_product_diagnostic_type">
+      <field name="name">ebooking_auto.product.diagnostic_type.form</field>
+      <field name="model">product.template</field>
+      <field name="arch" type="xml">
+        <form string="Оношлогооны төрөл">
+          <sheet>
+            <field name="id" invisible="True"/>
+            <div class="oe_button_box" name="button_box">
+              <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+              </button>
+            </div>
+            <div class="oe_title">
+              <label class="oe_edit_only" for="name" string="Оношлогооны төрлийн нэр"/>
+              <h1><field name="name" placeholder=""/></h1>
+              <field name="sale_ok" invisible="1"/>
+              <field name="purchase_ok" invisible="1"/>
+            </div>
+            <notebook>
+              <page string="Ерөнхий мэдээлэл" name="general_information">
+                <group>
+                  <field name="type" invisible="1"/>
+                  <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" string="Үнэ"/>
+                  <field name="currency_id" invisible="1"/>
+                </group>
+              </page>
+              <page string="Хямдрал" attrs="{'invisible':[('sale_ok','=',False)]}" name="sales">
+                <div name="pricelist_item">
+                  <separator string="Хямдралын үнэ"/>
+                  <field name="item_ids" nolabel="1" context="{'default_base':'list_price', 'default_applied_on' :'1_product'}">
+                    <tree string="Pricelist Items" editable="bottom">
+                      <field name="pricelist_id" required="1" string="Хямдралын төрөл"/>
+                      <field name="fixed_price" required="1" string="Үнэ"/>
+                      <field name="min_quantity" string="Тоо хэмжээ"/>
+                      <field name="date_start" string="Эхлэх огноо"/>
+                      <field name="date_end" string="Дуусах огноо"/>
+                      <field name="applied_on" invisible="1"/>
+                    </tree>
+                  </field>
+                </div>
+              </page>
+              <page string="Тайлбар" name="notes">
+                <group string="Тайлбар мэдээлэл" attrs="{'invisible': [('sale_ok','=',False)]}">
+                  <field name="description_sale" nolabel="1" placeholder=""/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="ebooking_auto.view_search_product_diagnostic_type">
+      <field name="name">ebooking_auto.product.diagnostic_type.search</field>
+      <field name="model">product.template</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="list_price"/>
+          <filter name="diagnostic" string="Оношлогооны төрөл" domain="[('categ_id.name', '=', 'Оношлогоо'),('categ_id.parent_id.id','=',1)]"/>
+       </search>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_diagnostic_type">
+      <field name="name">ebooking_auto.diagnostic.type.action</field>
+      <field name="res_model">product.template</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="ebooking_auto.view_tree_product_diagnostic_type"/>
+      <field name="search_view_id" ref="ebooking_auto.view_search_product_diagnostic_type"/>
+      <field name="context">{'search_default_diagnostic':1, 'is_diagnostic':True, 'default_type':'service','default_list_price':0}</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="ebooking_auto.action_window_diagnostic_type_tree">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ebooking_auto.view_tree_product_diagnostic_type"/>
+        <field name="act_window_id" ref="ebooking_auto.action_window_diagnostic_type"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="ebooking_auto.action_window_diagnostic_type_form">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="ebooking_auto.view_form_product_diagnostic_type"/>
+        <field name="act_window_id" ref="ebooking_auto.action_window_diagnostic_type"/>
+    </record>
+    <!-- REPAIR TYPE -->
+    <record model="ir.actions.act_window" id="ebooking_auto.action_window_repair_type">
+      <field name="name">ebooking_auto.repair.type.action</field>
+      <field name="res_model">ebooking_auto.repair_type</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

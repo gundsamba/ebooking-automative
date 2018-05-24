@@ -1,0 +1,6 @@
+.fc-scroller-canvas>.fc-bg {
+    z-index: 1!important;
+}
+.fc-scroller-canvas>.fc-content {
+    z-index: 2!important;
+}

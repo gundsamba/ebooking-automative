@@ -1,3 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from . import customer
+# from . import base
+from . import vehicle
+from . import employee
+from . import product
+from . import settings
+from . import appointment

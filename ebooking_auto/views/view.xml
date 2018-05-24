@@ -6,8 +6,33 @@
 
     <menuitem name="Үйлчлүүлэгчийн бүртгэл" id="ebooking_auto.menu_customer" parent="ebooking_auto.menu_root" sequence="1" action="ebooking_auto.action_window_customer_vehicle"/>
 
-    <menuitem name="Автомашины марк" id="ebooking_auto.vehicle_model" parent="ebooking_auto.menu_root"
+    <menuitem name="Ажилтан" id="ebooking_auto.menu_employee" parent="ebooking_auto.menu_root" sequence="1"/>
+    <menuitem name="Ажилтаны бүртгэл" id="ebooking_auto.menu_employee_list" parent="ebooking_auto.menu_employee" sequence="1" action="ebooking_auto.action_window_employee_list"/>
+    <menuitem name="Тохиргоо" id="ebooking_auto.menu_employee_conf" parent="ebooking_auto.menu_employee" sequence="1"/>
+    <menuitem name="Алба хэлтэс" id="ebooking_auto.menu_employee_conf_department" parent="ebooking_auto.menu_employee_conf" sequence="1" action="ebooking_auto.action_window_employee_department"/>
+    <menuitem name="Албан тушаал" id="ebooking_auto.menu_employee_conf_job" parent="ebooking_auto.menu_employee_conf" sequence="1" action="ebooking_auto.action_window_employee_job"/>
+
+    <menuitem name="Засвар үйлчилгээ" id="ebooking_auto.menu_repair" parent="ebooking_auto.menu_root" sequence="1"/>
+    <menuitem name="ЗҮ-ний бүртгэл" id="ebooking_auto.menu_repair_list" parent="ebooking_auto.menu_repair" sequence="1" action="ebooking_auto.action_window_repair_list"/>
+    <menuitem name="ЗҮ-ний төрөл" id="ebooking_auto.menu_repair_conf_category" parent="ebooking_auto.menu_repair" sequence="1" action="ebooking_auto.action_window_repair_category"/>
+
+    <menuitem name="Сэлбэг" id="ebooking_auto.menu_part" parent="ebooking_auto.menu_root" sequence="1"/>
+    <menuitem name="Сэлбэгийн бүртгэл" id="ebooking_auto.menu_part_list" parent="ebooking_auto.menu_part" sequence="1" action="ebooking_auto.action_window_part_list"/>
+    <menuitem name="Сэлбэгийн төрөл" id="ebooking_auto.menu_part_conf_category" parent="ebooking_auto.menu_part" sequence="1" action="ebooking_auto.action_window_part_category"/>
+
+    <menuitem name="Автомашины марк" id="ebooking_auto.menu_vehicle_model" parent="ebooking_auto.menu_root"
       sequence="1"
       action="ebooking_auto.action_window_vehicle_model"/>
+
+    <menuitem name="Тохиргоо" id="ebooking_auto.menu_settings" parent="ebooking_auto.menu_root"/>
+    <menuitem name="Үндсэн тохиргоо" id="ebooking_auto.menu_config" parent="menu_settings" sequence="1" action="ebooking_auto.action_window_base_settings"/>
+    <menuitem name="Өргөгч" id="ebooking_auto.menu_resource" parent="ebooking_auto.menu_settings"/>
+    <menuitem name="Өргөгчийн тоо" id="ebooking_auto.menu_resource_capacity" parent="ebooking_auto.menu_resource" action="ebooking_auto.action_window_resource_capacity"/>
+    <menuitem name="Өргөгчийн нэр" id="ebooking_auto.menu_resource_name" parent="ebooking_auto.menu_resource" action="ebooking_auto.action_window_resource"/>
+    <menuitem name="Үйлчлүүлэгчийн хүсэлт" id="ebooking_auto.menu_request_type" parent="ebooking_auto.menu_settings" action="ebooking_auto.action_window_request_type"/>
+    <menuitem name="Оношлогооны төрөл" id="ebooking_auto.menu_diagnostic_type" parent="ebooking_auto.menu_settings" action="ebooking_auto.action_window_diagnostic_type"/>
+    <menuitem name="ЗҮ орох төрөл" id="ebooking_auto.menu_repair_type" parent="ebooking_auto.menu_settings" action="ebooking_auto.action_window_repair_type"/>
+
+    <menuitem name="Test view" id="ebooking_auto.test" parent="ebooking_auto.menu_root" sequence="1" action="ebooking_auto.action_window_test"/>
   </data>
 </odoo>
